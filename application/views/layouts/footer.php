@@ -25,6 +25,32 @@
 <script src="<?php echo base_url();?>assets/template/dist/js/demo.js"></script>
 <script>
 $(document).ready(function () {
+    var base_url = "<?php echo base_url();?>";
+    $(".btn-remove").on("click",function(e){
+        e.preventDefault();
+        var ruta = $(this).attr("href");
+       $.ajax({
+        url: ruta,
+        type:"POST",
+        success:function(resp){
+            //http://localhost/ventas_ci/mantenimiento/categorias
+            window.location.href = base_url + resp;
+            //alert(rep);
+        }
+       });
+    });
+
+    $(".btn-view").on("click",function(){     
+        var id = $(this).val();
+        $.ajax({
+            url: base_url + 'mantenimiento/categorias/view/' + id,
+            type:'POST',
+            success:function(resp){
+                $("#modal-default .modal-body").html(resp);
+                //alert(resp);
+            }
+        });
+    });
 	$('#example1').DataTable();
 $('.sidebar-menu').tree()
 })

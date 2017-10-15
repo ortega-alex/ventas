@@ -11,9 +11,9 @@ class Categoria_model extends CI_Model
 	}
 
 	public function getCategorias(){
-		$this->db->where('estado','1');
-		$resultados = $this->db->get('categoria');
-		return $resultados->result();
+		return $this->db->where('estado','1')
+					->get('categoria')
+					->result();
 	}
 
 	public function save($data){
@@ -21,14 +21,14 @@ class Categoria_model extends CI_Model
 	}
 
 	public function getCategoria($id){
-		$this->db->where('categoria',$id);
-		$resultado = $this->db->get('categoria');
-		return $resultado->row();
+		return $this->db->where('categoria',$id)
+					->get('categoria')
+					->row();
 	}
 
 	public function update($id,$data){
-		$this->db->where('categoria',$id);
-		$this->db->update('categoria',$data);
+		$this->db->where('categoria',$id)
+					->update('categoria',$data);
 		return true;
 	}
 }

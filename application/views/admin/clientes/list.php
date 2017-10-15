@@ -4,7 +4,7 @@
             <!-- Content Header (Page header) -->
             <section class="content-header">
                 <h1>
-                Categorias
+                Clientes
                 <small>Listado</small>
                 </h1>
             </section>
@@ -15,7 +15,7 @@
                     <div class="box-body">
                         <div class="row">
                             <div class="col-md-12">
-                                <a href="<?php echo base_url();?>mantenimiento/categorias/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Categoria</a>
+                                <a href="<?php echo base_url();?>mantenimiento/clientes/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Clietes</a>
                             </div>
                             <hr>
                             <div class="row">
@@ -25,24 +25,32 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nombre</th>
-                                                <th>Descripcion</th>
+                                                <th>Apellido</th>
+                                                <th>Telefono</th>
+                                                <th>Direccion</th>
+                                                <th>NIT</th>
+                                                <th>Empresa</th>
                                                 <th>Opciones</th>
                                             </tr>
                                         </thead> 
                                         <tbody>
-                                            <?php if(!empty($categoria)): ?>
-                                                <?php foreach ($categoria as $categorias):?>
+                                            <?php if(!empty($clientes)): ?>
+                                                <?php foreach ($clientes as $cliente):?>
                                                     <tr>
-                                                        <td><?php echo $categorias->categoria;?></td>
-                                                        <td><?php echo $categorias->nombre;?></td>
-                                                        <td><?php echo $categorias->descripcion;?></td>
+                                                        <td><?php echo $cliente->cliente;?></td>
+                                                        <td><?php echo $cliente->nombre;?></td>
+                                                        <td><?php echo $cliente->apellido;?></td>
+                                                        <td><?php echo $cliente->telefono;?></td>
+                                                        <td><?php echo $cliente->direccion;?></td>
+                                                        <td><?php echo $cliente->nit;?></td>
+                                                        <td><?php echo $cliente->empresa;?></td>
                                                         <td>
                                                             <div class="btn-group">
-                                                                <button type="button" class="btn btn-info btn-view" data-toggle='modal' data-target='#modal-default' value="<?php echo $categorias->categoria;?>">
+                                                                <button type="button" class="btn btn-info btn-view" data-toggle='modal' data-target='#modal-default' value="<?php echo $cliente->cliente;?>">
                                                                         <span class="fa fa-eye"></span>
                                                                 </button>
-                                                                    <a href="<?php echo base_url();?>mantenimiento/categorias/edit/<?php echo $categorias->categoria?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
-                                                                    <a href="<?php echo base_url();?>mantenimiento/categorias/delete/<?php echo $categorias->categoria?>" class="btn btn-danger btn-remove"><span class="fa fa-trash"></span></a>
+                                                                    <a href="<?php echo base_url();?>mantenimiento/categorias/edit/<?php echo $cliente->cliente?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                                    <a href="<?php echo base_url();?>mantenimiento/categorias/delete/<?php echo $cliente->cliente?>" class="btn btn-danger btn-remove"><span class="fa fa-trash"></span></a>
                                                             </div>
                                                         </td>
                                                     </tr>

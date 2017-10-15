@@ -49,8 +49,8 @@
                                                                 <button type="button" class="btn btn-info btn-view" data-toggle='modal' data-target='#modal-default' value="<?php echo $cliente->cliente;?>">
                                                                         <span class="fa fa-eye"></span>
                                                                 </button>
-                                                                    <a href="<?php echo base_url();?>mantenimiento/categorias/edit/<?php echo $cliente->cliente?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
-                                                                    <a href="<?php echo base_url();?>mantenimiento/categorias/delete/<?php echo $cliente->cliente?>" class="btn btn-danger btn-remove"><span class="fa fa-trash"></span></a>
+                                                                    <a href="<?php echo base_url();?>mantenimiento/clientes/edit/<?php echo $cliente->cliente?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                                    <a href="<?php echo base_url();?>mantenimiento/clientes/delete/<?php echo $cliente->cliente?>" class="btn btn-danger btn-remove"><span class="fa fa-trash"></span></a>
                                                             </div>
                                                         </td>
                                                     </tr>

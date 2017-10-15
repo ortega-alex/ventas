@@ -44,9 +44,10 @@
                                                         <td><?php echo $cliente->direccion;?></td>
                                                         <td><?php echo $cliente->nit;?></td>
                                                         <td><?php echo $cliente->empresa;?></td>
+                                                        <?php $datacliente = $cliente->cliente."*".$cliente->nit."*".$cliente->nombre."*".$cliente->apellido."*".$cliente->direccion."*".$cliente->telefono."*".$cliente->empresa;?>
                                                         <td>
                                                             <div class="btn-group">
-                                                                <button type="button" class="btn btn-info btn-view" data-toggle='modal' data-target='#modal-default' value="<?php echo $cliente->cliente;?>">
+                                                                <button type="button" class="btn btn-info btn-view-cliente" data-toggle='modal' data-target='#modal-default' value="<?php echo $datacliente;?>">
                                                                         <span class="fa fa-eye"></span>
                                                                 </button>
                                                                     <a href="<?php echo base_url();?>mantenimiento/clientes/edit/<?php echo $cliente->cliente?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>

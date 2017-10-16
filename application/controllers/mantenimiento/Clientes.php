@@ -37,22 +37,27 @@ class Clientes extends CI_Controller{
 		$nit = $this->input->post('nit');
 		$empresa = $this->input->post('empresa');
 
-		$data = array(
-			'nombre' => $nombre,
-			'apellido' => $apellido,
-			'direccion' => $direccion,
-			'telefono' => $telefono,
-			'nit' => $nit,
-			'empresa' => $empresa,
-			'status' => '1',
-			'fecha_ingreso' => date("Y-m-d H:i:s")
-		);
-		if ($this->Clientes_model->save($data)) {
-			redirect(base_url().'mantenimiento/clientes');
-		} else {
-			$this->session->set_flashdata('error','No se puede guardar la informacion');
+		if($this->Clientes_model->getNit($nit)){
+			$data = array(
+				'nombre' => $nombre,
+				'apellido' => $apellido,
+				'direccion' => $direccion,
+				'telefono' => $telefono,
+				'nit' => $nit,
+				'empresa' => $empresa,
+				'status' => '1',
+				'fecha_ingreso' => date("Y-m-d H:i:s")
+			);
+			if ($this->Clientes_model->save($data)) {
+				redirect(base_url().'mantenimiento/clientes');
+			} else {
+				$this->session->set_flashdata('error','No se puede guardar la informacion');
+				redirect(base_url().'mantenimiento/clientes/add');
+			}
+		}else{
+			$this->session->set_flashdata('error','No se puede guardar la informacion el nit ya existe');
 			redirect(base_url().'mantenimiento/clientes/add');
-		}
+		}	
 		
 	}
 

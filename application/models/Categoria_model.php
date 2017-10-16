@@ -5,10 +5,6 @@
 */
 class Categoria_model extends CI_Model
 {
-	
-	function __construct(){
-		# code...
-	}
 
 	public function getCategorias(){
 		return $this->db->where('estado','1')

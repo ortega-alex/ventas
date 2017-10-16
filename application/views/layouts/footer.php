@@ -26,6 +26,19 @@
 <script>
 $(document).ready(function () {
     var base_url = "<?php echo base_url();?>";
+      $(".btn-view-producto").on("click",function(){
+        var producto = $(this).val();
+        //alert(cliente);
+        var infoproducto = producto.split("*");
+        html = "<p><strong>Codigo:</strong>"+infoproducto[1]+"</p>";
+        html += "<p><strong>Nombre:</strong>"+infoproducto[2]+"</p>";
+        html += "<p><strong>Descripcion:</strong>"+infoproducto[3]+"</p>";
+        html += "<p><strong>Precio:</strong>"+infoproducto[4]+"</p>";
+        html += "<p><strong>Stock:</strong>"+infoproducto[5]+"</p>";
+        html += "<p><strong>Categoria:</strong>"+infoproducto[6]+"</p>";
+         $("#modal-default .modal-body").html(html);
+    });
+
     $(".btn-view-cliente").on("click",function(){
         var cliente = $(this).val();
         //alert(cliente);

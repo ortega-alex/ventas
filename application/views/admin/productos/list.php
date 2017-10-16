@@ -44,14 +44,14 @@
                                                         <td><?php echo $producto->precio;?></td>
                                                         <td><?php echo $producto->stock;?></td>
                                                         <td><?php echo $producto->categoria;?></td>
-                                                        <?php $dataproducto = $producto->producto."*".$producto->codigo."*".$producto->nombre."*".$producto->descripcion."*".$producto->precio."*".$producto->stock?>
+                                                        <?php $dataproducto = $producto->producto."*".$producto->codigo."*".$producto->nombre."*".$producto->descripcion."*".$producto->precio."*".$producto->stock."*".$producto->categoria;?>
                                                         <td>
                                                             <div class="btn-group">
-                                                                <button type="button" class="btn btn-info btn-view-cliente" data-toggle='modal' data-target='#modal-default' value="<?php echo $dataproducto;?>">
+                                                                <button type="button" class="btn btn-info btn-view-producto" data-toggle='modal' data-target='#modal-default' value="<?php echo $dataproducto;?>">
                                                                         <span class="fa fa-eye"></span>
                                                                 </button>
-                                                                    <a href="<?php echo base_url();?>mantenimiento/clientes/edit/<?php echo $producto->producto?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
-                                                                    <a href="<?php echo base_url();?>mantenimiento/clientes/delete/<?php echo $producto->producto?>" class="btn btn-danger btn-remove"><span class="fa fa-trash"></span></a>
+                                                                    <a href="<?php echo base_url();?>mantenimiento/productos/edit/<?php echo $producto->producto?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                                    <a href="<?php echo base_url();?>mantenimiento/productos/delete/<?php echo $producto->producto?>" class="btn btn-danger btn-remove"><span class="fa fa-trash"></span></a>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -78,7 +78,7 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Informacion de la Categorias</h4>
+                <h4 class="modal-title">Informacion del producto</h4>
               </div>
               <div class="modal-body">
 

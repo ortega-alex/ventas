@@ -26,5 +26,17 @@ class Clientes_model extends CI_Model
 		return true;
 	}
 
+	public function getNit($nit){
+		$row = $this->db->where('nit',$nit)
+						->get('cliente')
+						->row();
+		if(empty($row )){
+			return true;
+		}else{
+			return false;
+		}				
+
+	}
+
 }
  ?>

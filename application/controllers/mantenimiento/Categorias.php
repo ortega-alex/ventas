@@ -30,19 +30,23 @@ class Categorias extends CI_Controller
 		$nombre = $this->input->post('nombre');
 		$descripcion = $this->input->post('descripcion');
 
-		$data = array(
-			'nombre' => $nombre,
-			'descripcion' => $descripcion,
-			'estado' => '1',
-			'fecha_alta' => date("Y-m-d H:i:s")
-		);
-		if ($this->Categoria_model->save($data)) {
-			redirect(base_url().'mantenimiento/categorias');
-		} else {
-			$this->session->set_flashdata('error','No se puede guardar la informacion');
-			redirect(base_url().'mantenimiento/categorias/add');
+		$this->form_validation->set_rules("nombre","Nombre","required|is_unique[categoria.nombre]");
+		if($this->form_validation->run()){
+			$data = array(
+				'nombre' => $nombre,
+				'descripcion' => $descripcion,
+				'estado' => '1',
+				'fecha_alta' => date("Y-m-d H:i:s")
+			);
+			if ($this->Categoria_model->save($data)) {
+				redirect(base_url().'mantenimiento/categorias');
+			} else {
+				$this->session->set_flashdata('error','No se puede guardar la informacion');
+				redirect(base_url().'mantenimiento/categorias/add');
+			}
+		}else{
+			$this->add();
 		}
-		
 	}
 
 	public function edit($id){
@@ -59,18 +63,31 @@ class Categorias extends CI_Controller
 		$id = $this->input->post('idCategoria');
 		$nombre = $this->input->post('nombre');
 		$descripcion = $this->input->post('descripcion');
-		$data = array(
-			'nombre' => $nombre,
-			'descripcion' => $descripcion
-		);
 
-		if ($this->Categoria_model->update($id,$data)) {
-			redirect(base_url().'mantenimiento/categorias');
-		} else {
-			$this->session->set_flashdata('error','No se puede actualizar la informacion');
-			redirect(base_url().'mantenimiento/categorias/edit/'.$id);
+		$categoriaActual = $this->Categoria_model->getCategoria($id);
+		if($nombre == $categoriaActual->nombre){
+			$unique = '';
+		}else{
+			$unique = '|is_unique[categoria.nombre]';
 		}
-		
+
+		$this->form_validation->set_rules("nombre","Nombre","required".$unique);
+		if($this->form_validation->run()){
+			$data = array(
+				'nombre' => $nombre,
+				'descripcion' => $descripcion
+			);
+
+
+			if ($this->Categoria_model->update($id,$data)) {
+				redirect(base_url().'mantenimiento/categorias');
+			} else {
+				$this->session->set_flashdata('error','No se puede actualizar la informacion');
+				redirect(base_url().'mantenimiento/categorias/edit/'.$id);
+			}
+		}else{
+			$this->edit($id);
+		}
 	}
 
 	public function view($id){

@@ -37,23 +37,31 @@ class Productos extends CI_Controller{
 		$descripcion = $this->input->post('descripcion');
 		$precio = $this->input->post('precio');
 		$stock = $this->input->post('stock');
-		$categoria = $this->input->post('categoria');		
-		$data = array(
-			'codigo' => $codigo,
-			'nombre' => $nombre,
-			'descripcion' => $descripcion,
-			'precio' => $precio,
-			'stock' => $stock,
-			'categoria' => $categoria,
-			'status' => '1'
-		);
-		if ($this->Productos_model->save($data)) {
-			redirect(base_url().'mantenimiento/productos');
-		} else {
-			$this->session->set_flashdata('error','No se puede guardar la informacion');
-			redirect(base_url().'mantenimiento/productos/add');
+		$categoria = $this->input->post('categoria');
+
+		$this->form_validation->set_rules("codigo","Codigo","required|is_unique[productos.codigo]");
+		$this->form_validation->set_rules("nombre","Nombre","required");
+		$this->form_validation->set_rules("precio","Precio","required");
+		$this->form_validation->set_rules("stock","Stock","required");
+		if($this->form_validation->run()){	
+			$data = array(
+				'codigo' => $codigo,
+				'nombre' => $nombre,
+				'descripcion' => $descripcion,
+				'precio' => $precio,
+				'stock' => $stock,
+				'categoria' => $categoria,
+				'status' => '1'
+			);
+			if ($this->Productos_model->save($data)) {
+				redirect(base_url().'mantenimiento/productos');
+			} else {
+				$this->session->set_flashdata('error','No se puede guardar la informacion');
+				redirect(base_url().'mantenimiento/productos/add');
+			}
+		}else{
+			$this->add();
 		}
-		
 	}
 
 	public function edit($id){
@@ -75,22 +83,37 @@ class Productos extends CI_Controller{
 		$precio = $this->input->post('precio');
 		$stock = $this->input->post('stock');
 		$categoria = $this->input->post('categoria');
-		$data = array(
-			'codigo' => $codigo,
-			'nombre' => $nombre,
-			'descripcion' => $descripcion,
-			'precio' => $precio,
-			'stock' => $stock,
-			'categoria' => $categoria
-		);
 
-		if ($this->Productos_model->update($id,$data)) {
-			redirect(base_url().'mantenimiento/productos');
-		} else {
-			$this->session->set_flashdata('error','No se puede actualizar la informacion');
-			redirect(base_url().'mantenimiento/productos/edit/'.$id);
+		$productoActual = $this->Productos_model->getProducto($id);
+		if($codigo == $productoActual->codigo){
+			$is_unique = '';
+		}else{
+			$is_unique = '|is_unique[productos.codigo]';
 		}
-		
+		$this->form_validation->set_rules("codigo","Codigo","required".$is_unique);
+		$this->form_validation->set_rules("nombre","Nombre","required");
+		$this->form_validation->set_rules("precio","Precio","required");
+		$this->form_validation->set_rules("stock","Stock","required");
+		if($this->form_validation->run()){	
+
+			$data = array(
+				'codigo' => $codigo,
+				'nombre' => $nombre,
+				'descripcion' => $descripcion,
+				'precio' => $precio,
+				'stock' => $stock,
+				'categoria' => $categoria
+			);
+
+			if ($this->Productos_model->update($id,$data)) {
+				redirect(base_url().'mantenimiento/productos');
+			} else {
+				$this->session->set_flashdata('error','No se puede actualizar la informacion');
+				redirect(base_url().'mantenimiento/productos/edit/'.$id);
+			}
+		}else{
+			$this->edit($id);
+		}
 	}
 
 	public function view($id){

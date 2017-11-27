@@ -23,28 +23,33 @@ class Clientes extends CI_Controller{
 	}
 
 	public function add(){
+		$data = array(
+						"tipoClientes" => $this->Clientes_model->getTipoCliente(),
+						"tipoDocumentos" => $this->Clientes_model->getTipoDocumento() 
+					);
+
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');
-		$this->load->view('admin/clientes/add');
+		$this->load->view('admin/clientes/add',$data);
 		$this->load->view('layouts/footer');
 	}
 
 	public function store(){
 		$nombre = $this->input->post('nombre');
-		$apellido = $this->input->post('apellido');
 		$direccion = $this->input->post('direccion');
 		$telefono = $this->input->post('telefono');
-		$nit = $this->input->post('nit');
-		$empresa = $this->input->post('empresa');
+		$tipoCliente = $this->input->post('tipoCliente');
+		$tipoDocumento = $this->input->post('tipoDocumento');		
+		$numDocumento = $this->input->post('numDocumento');
 
-		if($this->Clientes_model->getNit($nit)){
+		if($this->Clientes_model->getDocumento($numDocumento)){
 			$data = array(
 				'nombre' => $nombre,
-				'apellido' => $apellido,
 				'direccion' => $direccion,
 				'telefono' => $telefono,
-				'nit' => $nit,
-				'empresa' => $empresa,
+				'tipo_cliente' => $tipoCliente,
+				'tipo_documento' => $tipoDocumento,
+				'num_documento' => $numDocumento,
 				'status' => '1',
 				'fecha_ingreso' => date("Y-m-d H:i:s")
 			);
@@ -55,7 +60,7 @@ class Clientes extends CI_Controller{
 				redirect(base_url().'mantenimiento/clientes/add');
 			}
 		}else{
-			$this->session->set_flashdata('error','No se puede guardar la informacion el nit ya existe');
+			$this->session->set_flashdata('error','No se puede guardar la informacion el numero de documento ya existe');
 			redirect(base_url().'mantenimiento/clientes/add');
 		}	
 		
@@ -64,7 +69,10 @@ class Clientes extends CI_Controller{
 	public function edit($id){
 		$data = array(
 			'clientes' => $this->Clientes_model->getCliente($id),
+			'tipoClientes' => $this->Clientes_model->getTipoCliente(),
+			'tipoDocumentos' => $this->Clientes_model->getTipoDocumento()
 		);
+
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');
 		$this->load->view('admin/clientes/edit',$data);
@@ -74,16 +82,18 @@ class Clientes extends CI_Controller{
 	public function update(){
 		$id = $this->input->post('cliente');
 		$nombre = $this->input->post('nombre');
-		$apellido = $this->input->post('apellido');
+		$tipoCliente = $this->input->post('tipoCliente');
+		$tipoDocumento = $this->input->post('tipoDocumento');
 		$direccion = $this->input->post('direccion');
 		$telefono = $this->input->post('telefono');
-		$empresa = $this->input->post('empresa');
+		$numDocumento = $this->input->post('numDocumento');
 		$data = array(
 			'nombre' => $nombre,
-			'apellido' => $apellido,
+			'tipo_cliente' => $tipoCliente,
+			'tipo_documento' => $tipoDocumento,
 			'direccion' => $direccion,
 			'telefono' => $telefono,
-			'empresa' => $empresa,
+			'num_documento' => $numDocumento,
 		);
 
 		if ($this->Clientes_model->update($id,$data)) {

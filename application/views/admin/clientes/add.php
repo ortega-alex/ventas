@@ -28,46 +28,53 @@
                                 <form action="<?php echo base_url();?>mantenimiento/clientes/store" method="POST">
                                          <div class="form-group">
                                             <div class="col-xs-12 col-md-12 col-lg-12"> 
-                                                <label for="nit" class="control-label" style="text-align: left;">Nit:</label>
-                                                <div class="input-group col-xs-6 col-md-6">
-                                                    <input name="nit"  class="form-control input-md" id="nit">
-                                                </div>                      
-                                            </div>  
-                                         </div>   
-                                        <div class="form-group">
-                                            <div class="col-xs-12 col-md-6 col-lg-6"> 
                                                 <label for="nombre" class="control-label" style="text-align: left;">Nombre:</label>
                                                 <div class="input-group col-xs-12 col-md-12">
                                                     <input name="nombre"  class="form-control input-md" id="nombre">
                                                 </div>                      
-                                            </div>                                            
-                                            <div class="col-xs-12 col-md-6 col-lg-6"> 
-                                                <label for="apellido" class="control-label" style="text-align: left;">Apelido:</label>
-                                                <div class="input-group col-xs-12 col-md-12">
-                                                    <input name="apellido"  class="form-control input-md" id="apellido">
-                                                </div>                      
                                             </div>
                                         </div>
-                                         <div class="form-group">
+                                        <div class="fom-group">
                                             <div class="col-xs-12 col-md-6 col-lg-6"> 
+                                                <label for="tipoCliente" class="control-label" style="text-align: left;">Tipo Cliente:</label>
+                                                <div class="input-group col-xs-12 col-md-12">
+                                                    <select name="tipoCliente"  class="form-control input-md" id="tipoCliente">
+                                                    <option value="">Selecciones un tipo de cliente</option>
+                                                    <?php foreach ($tipoClientes as $tipoCliente):?>
+                                                        <option value="<?php echo $tipoCliente->tipo_cliente;?>"><?php echo $tipoCliente->nombre;?></option>
+                                                    <?php endforeach; ?>    
+                                                    </select>
+                                                </div>                      
+                                            </div>
+                                            <div class="col-xs-12 col-md-6 col-lg-6"> 
+                                                <label for="tipoDocumento" class="control-label" style="text-align: left;">Tipo Documento:</label>
+                                                <div class="input-group col-xs-12 col-md-12">
+                                                    <select name="tipoDocumento"  class="form-control input-md" id="tipoDocumento">
+                                                    <option value="">Selecciones un tipo de Documento</option>
+                                                    <?php foreach ($tipoDocumentos as $tipoDocumento):?>
+                                                        <option value="<?php echo $tipoDocumento->tipo_documento;?>"><?php echo $tipoDocumento->nombre;?></option>
+                                                    <?php endforeach; ?>    
+                                                    </select>
+                                                </div>                      
+                                            </div>   
+                                        </div>
+                                         <div class="form-group">
+                                            <div class="col-xs-12 col-md-4 col-lg-4"> 
+                                                <label for="numDocumento" class="control-label" style="text-align: left;">Numero de Documento:</label>
+                                                <div class="input-group col-xs-12 col-md-12">
+                                                    <input name="numDocumento"  class="form-control input-md" id="numDocumento"></div>                      
+                                            </div> 
+                                            <div class="col-xs-12 col-md-4 col-lg-4"> 
                                                 <label for="direccion" class="control-label" style="text-align: left;">Direccion:</label>
                                                 <div class="input-group col-xs-12 col-md-12">
                                                     <input name="direccion"  class="form-control input-md" id="direccion"></div>                      
                                             </div>                                            
-                                            <div class="col-xs-12 col-md-6 col-lg-6"> 
+                                            <div class="col-xs-12 col-md-4 col-lg-4"> 
                                                 <label for="telefono" class="control-label" style="text-align: left;">Telefono:</label>
                                                 <div class="input-group col-xs-12 col-md-12">
                                                     <input name="telefono"  class="form-control input-md" id="telefono"></div>                      
                                             </div>
                                         </div> 
-                                        <div class="form-group">
-                                            <div class="col-xs-12 col-md-12 col-lg-12"> 
-                                                <label for="empresa" class="control-label" style="text-align: left;">Empresa:</label>
-                                                <div class="input-group col-xs-12 col-md-12">
-                                                    <input name="empresa"  class="form-control input-md" id="empresa"></div>                      
-                                            </div>  
-                                         </div> 
-
                                         <div class="forn-group">
                                             <div class="text-center">
                                                 <button type="submit" class="btn btn-success btn-flat">Guardar</button>

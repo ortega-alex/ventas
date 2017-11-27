@@ -42,13 +42,13 @@ $(document).ready(function () {
     $(".btn-view-cliente").on("click",function(){
         var cliente = $(this).val();
         //alert(cliente);
-        var infocliente = cliente.split("*");
-        html = "<p><strong>Nit:</strong>"+infocliente[1]+"</p>";
-        html += "<p><strong>Nombre:</strong>"+infocliente[2]+"</p>";
-        html += "<p><strong>Apellido:</strong>"+infocliente[3]+"</p>";
+        var infocliente = cliente.split("*");        
+        html = "<p><strong>Nombre:</strong>"+infocliente[1]+"</p>";
+        html += "<p><strong>Tipo Cliente:</strong>"+infocliente[2]+"</p>";
+        html += "<p><strong>Tipo Documento:</strong>"+infocliente[3]+"</p>";
         html += "<p><strong>Direccion:</strong>"+infocliente[4]+"</p>";
         html += "<p><strong>Telefono:</strong>"+infocliente[5]+"</p>";
-        html += "<p><strong>Empresa:</strong>"+infocliente[6]+"</p>";
+        html += "<p><strong>Numero de Documento:</strong>"+infocliente[6]+"</p>";
          $("#modal-default .modal-body").html(html);
     });
     $(".btn-remove").on("click",function(e){

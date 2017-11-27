@@ -25,11 +25,11 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Nombre</th>
-                                                <th>Apellido</th>
+                                                <th>Tipo Cliente</th>
+                                                <th>Tipo Documento</th>
                                                 <th>Telefono</th>
                                                 <th>Direccion</th>
-                                                <th>NIT</th>
-                                                <th>Empresa</th>
+                                                <th>Numero de Documento</th>
                                                 <th>Opciones</th>
                                             </tr>
                                         </thead> 
@@ -39,12 +39,13 @@
                                                     <tr>
                                                         <td><?php echo $cliente->cliente;?></td>
                                                         <td><?php echo $cliente->nombre;?></td>
-                                                        <td><?php echo $cliente->apellido;?></td>
+                                                        <td><?php echo $cliente->tipoCliente;?></td>
+
+                                                        <td><?php echo $cliente->tipoDocumento;?></td>
                                                         <td><?php echo $cliente->telefono;?></td>
                                                         <td><?php echo $cliente->direccion;?></td>
-                                                        <td><?php echo $cliente->nit;?></td>
-                                                        <td><?php echo $cliente->empresa;?></td>
-                                                        <?php $datacliente = $cliente->cliente."*".$cliente->nit."*".$cliente->nombre."*".$cliente->apellido."*".$cliente->direccion."*".$cliente->telefono."*".$cliente->empresa;?>
+                                                        <td><?php echo $cliente->num_documento;?></td>
+                                                        <?php $datacliente = $cliente->cliente."*".$cliente->nombre."*".$cliente->tipoCliente."*".$cliente->tipoDocumento."*".$cliente->direccion."*".$cliente->telefono."*".$cliente->num_documento;?>
                                                         <td>
                                                             <div class="btn-group">
                                                                 <button type="button" class="btn btn-info btn-view-cliente" data-toggle='modal' data-target='#modal-default' value="<?php echo $datacliente;?>">

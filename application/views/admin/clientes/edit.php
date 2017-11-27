@@ -27,48 +27,63 @@
                                 <?php endif; ?>                                     
                                 <form action="<?php echo base_url();?>mantenimiento/clientes/update" method="POST">
                                     <input type="hidden" value="<?php echo $clientes->cliente;?>" name="cliente">
-                                    <div class="form-group">
-                                            <div class="col-xs-12 col-md-12 col-lg-12"> 
-                                                <label for="nit" class="control-label" style="text-align: left;">Nit:</label>
-                                                <div class="input-group col-xs-6 col-md-6">
-                                                    <input name="nit"  class="form-control input-md" id="nit" readonly="readonly" value="<?php echo $clientes->nit?>">
-                                                </div>                      
-                                            </div>  
-                                         </div>   
                                         <div class="form-group">
-                                            <div class="col-xs-12 col-md-6 col-lg-6"> 
+                                            <div class="col-xs-12 col-md-12 col-lg-12"> 
                                                 <label for="nombre" class="control-label" style="text-align: left;">Nombre:</label>
                                                 <div class="input-group col-xs-12 col-md-12">
                                                     <input name="nombre"  class="form-control input-md" id="nombre" value="<?php echo $clientes->nombre?>">
                                                 </div>                      
-                                            </div>                                            
-                                            <div class="col-xs-12 col-md-6 col-lg-6"> 
-                                                <label for="apellido" class="control-label" style="text-align: left;">Apelido:</label>
-                                                <div class="input-group col-xs-12 col-md-12">
-                                                    <input name="apellido"  class="form-control input-md" id="apellido" value="<?php echo $clientes->apellido?>">
-                                                </div>                      
                                             </div>
                                         </div>
-                                         <div class="form-group">
+                                        <div class="from-group">
                                             <div class="col-xs-12 col-md-6 col-lg-6"> 
+                                                <label for="tipoCliente" class="control-label" style="text-align: left;">Tipo Cliente:</label>
+                                                <div class="input-group col-xs-12 col-md-12">
+                                                    <select name="tipoCliente"  class="form-control input-md" id="tipoCliente">
+                                                    <option value="">Selecciones un tipo de cliente</option>
+                                                    <?php foreach ($tipoClientes as $tipoCliente):?>
+                                                        <?php if($tipoClietne->tipo_cliente == $cliente->tipo_cliente): ?>
+                                                            <option value="<?php echo $tipoCliente->tipo_cliente;?>" selected><?php echo $tipoCliente->nombre;?></option>
+                                                        <?php  else:?>    
+                                                        <option value="<?php echo $tipoCliente->tipo_cliente;?>"><?php echo $tipoCliente->nombre;?></option>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>    
+                                                    </select>
+                                                </div>                      
+                                            </div> 
+                                            <div class="col-xs-12 col-md-6 col-lg-6"> 
+                                                <label for="tipoDocumento" class="control-label" style="text-align: left;">Tipo Documento:</label>
+                                                <div class="input-group col-xs-12 col-md-12">
+                                                    <select name="tipoDocumento"  class="form-control input-md" id="tipoDocumento">
+                                                    <option value="">Selecciones un tipo de Documento</option>
+                                                    <?php foreach ($tipoDocumentos as $tipoDocumento):?>
+                                                        <?php if($tipoDocumento->tipo_documento == $clientes->tipo_documento): ?>
+                                                            <option value="<?php echo $tipoDocumento->tipo_documento;?>" selected><?php echo $tipoDocumento->nombre;?></option>
+                                                        <?php  else:?>    
+                                                        <option value="<?php echo $tipoDocumento->tipo_documento?>"><?php echo $tipoDocumento->nombre;?></option>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; ?>    
+                                                    </select>
+                                                </div>                      
+                                            </div>  
+                                        </div>
+                                         <div class="form-group">
+                                            <div class="col-xs-12 col-md-4 col-lg-4"> 
+                                                <label for="numDocumento" class="control-label" style="text-align: left;">Numero de Documento:</label>
+                                                <div class="input-group col-xs-12 col-md-12">
+                                                    <input name="numDocumento"  class="form-control input-md" id="numDocumento" value="<?php echo $clientes->num_documento?>"></div>                      
+                                            </div>  
+                                            <div class="col-xs-12 col-md-4 col-lg-4"> 
                                                 <label for="direccion" class="control-label" style="text-align: left;">Direccion:</label>
                                                 <div class="input-group col-xs-12 col-md-12">
                                                     <input name="direccion"  class="form-control input-md" id="direccion" value="<?php echo $clientes->direccion?>"></div>                      
                                             </div>                                            
-                                            <div class="col-xs-12 col-md-6 col-lg-6"> 
+                                            <div class="col-xs-12 col-md-4 col-lg-4"> 
                                                 <label for="telefono" class="control-label" style="text-align: left;">Telefono:</label>
                                                 <div class="input-group col-xs-12 col-md-12">
                                                     <input name="telefono"  class="form-control input-md" id="telefono" value="<?php echo $clientes->telefono?>"></div>                      
                                             </div>
                                         </div> 
-                                        <div class="form-group">
-                                            <div class="col-xs-12 col-md-12 col-lg-12"> 
-                                                <label for="empresa" class="control-label" style="text-align: left;">Empresa:</label>
-                                                <div class="input-group col-xs-12 col-md-12">
-                                                    <input name="empresa"  class="form-control input-md" id="empresa" value="<?php echo $clientes->empresa?>"></div>                      
-                                            </div>  
-                                         </div> 
-
                                         <div class="forn-group">
                                             <div class="text-center">
                                                 <button type="submit" class="btn btn-success btn-flat">Guardar</button>

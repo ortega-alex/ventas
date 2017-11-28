@@ -27,20 +27,22 @@
                                 <?php endif; ?>                                     
                                 <form action="<?php echo base_url();?>mantenimiento/clientes/update" method="POST">
                                     <input type="hidden" value="<?php echo $clientes->cliente;?>" name="cliente">
-                                        <div class="form-group">
+                                        <div class="form-group <?php echo form_error('nombre') != false ? 'has-error':'';?>">
                                             <div class="col-xs-12 col-md-12 col-lg-12"> 
                                                 <label for="nombre" class="control-label" style="text-align: left;">Nombre:</label>
                                                 <div class="input-group col-xs-12 col-md-12">
-                                                    <input name="nombre"  class="form-control input-md" id="nombre" value="<?php echo $clientes->nombre?>">
+                                                    <input name="nombre"  class="form-control input-md" id="nombre" value="<?php echo form_error('nombre') != false ? set_select('nombre'):$clientes->nombre;?>">
                                                 </div>                      
                                             </div>
+                                            <?php echo form_error('nombre','<span clas"help-block">','</span>');?>
                                         </div>
                                         <div class="from-group">
-                                            <div class="col-xs-12 col-md-6 col-lg-6"> 
+                                            <div class="col-xs-12 col-md-6 col-lg-6 <?php echo form_error('tipoCliente') != false ? 'has-error':'';?>"> 
                                                 <label for="tipoCliente" class="control-label" style="text-align: left;">Tipo Cliente:</label>
                                                 <div class="input-group col-xs-12 col-md-12">
                                                     <select name="tipoCliente"  class="form-control input-md" id="tipoCliente">
                                                     <option value="">Selecciones un tipo de cliente</option>
+                                                    
                                                     <?php foreach ($tipoClientes as $tipoCliente):?>
                                                         <?php if($tipoClietne->tipo_cliente == $cliente->tipo_cliente): ?>
                                                             <option value="<?php echo $tipoCliente->tipo_cliente;?>" selected><?php echo $tipoCliente->nombre;?></option>
@@ -49,9 +51,10 @@
                                                         <?php endif; ?>
                                                     <?php endforeach; ?>    
                                                     </select>
+                                                    <?php echo form_error('tipoCliente','<span class="hel-block">','</span>');?>
                                                 </div>                      
                                             </div> 
-                                            <div class="col-xs-12 col-md-6 col-lg-6"> 
+                                            <div class="col-xs-12 col-md-6 col-lg-6 <?php echo form_error('tipoDocumento') != false ? 'has-error':'';?>"> 
                                                 <label for="tipoDocumento" class="control-label" style="text-align: left;">Tipo Documento:</label>
                                                 <div class="input-group col-xs-12 col-md-12">
                                                     <select name="tipoDocumento"  class="form-control input-md" id="tipoDocumento">
@@ -64,14 +67,16 @@
                                                         <?php endif; ?>
                                                     <?php endforeach; ?>    
                                                     </select>
+                                                    <?php echo form_error('tipoDocumento','<span class="help-block">','</span>') ;?>
                                                 </div>                      
                                             </div>  
                                         </div>
-                                         <div class="form-group">
-                                            <div class="col-xs-12 col-md-4 col-lg-4"> 
+                                         <div class="form-group ">
+                                            <div class="col-xs-12 col-md-4 col-lg-4 <?php form_error('numDocumento') != false ? 'has-error':'';?>"> 
                                                 <label for="numDocumento" class="control-label" style="text-align: left;">Numero de Documento:</label>
                                                 <div class="input-group col-xs-12 col-md-12">
-                                                    <input name="numDocumento"  class="form-control input-md" id="numDocumento" value="<?php echo $clientes->num_documento?>"></div>                      
+                                                    <input name="numDocumento"  class="form-control input-md" id="numDocumento" value="<?php echo form_error('numDocuento') != false ? set_select('numDocumento'):$clientes->num_documento;?>"></div>
+                                                    <?php form_error('numDocumento','<span class="help-block">','</span>')?>                      
                                             </div>  
                                             <div class="col-xs-12 col-md-4 col-lg-4"> 
                                                 <label for="direccion" class="control-label" style="text-align: left;">Direccion:</label>

@@ -77,8 +77,43 @@ $(document).ready(function () {
         });
     });
 	$('#example1').DataTable();
-$('.sidebar-menu').tree()
+    $('.sidebar-menu').tree();
+    $("#comprobante").on("change",function(){
+        opcion = $(this).val();
+        if (opcion != "") {
+            comprobante = opcion.split("*");
+            $("#idcomprobante").val(comprobante[0]);
+            $("#igv").val(comprobante[2]);
+            $("#serie").val(comprobante[3]);
+            $("#numero").val(generarNumero(comprobante[1]));            
+        }else{
+            $("#idcomprobante").val(null);
+            $("#igv").val(null);
+            $("#serie").val(null);
+            $("#numero").val(null);
+        }
+
+    });
 })
+
+function generarNumero(numero){
+    if (numero >= 99999 && numero < 999999) {
+        return Number(numero)+1
+    }
+    if (numero >= 9999 && numero < 99999) {
+        return "0"+(Number(numero)+1)
+    }
+    if (numero >= 999 && numero < 9999) {
+        return "00"+(Number(numero)+1)
+    }
+    if (numero >= 99 && numero < 999) {
+        return "000"+(Number(numero)+1)
+    }
+    if (numero < 9) {
+        return "0000"+(Number(numero)+1)
+    }
+}
+
 </script>
 </body>
 </html>

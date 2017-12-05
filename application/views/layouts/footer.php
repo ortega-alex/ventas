@@ -25,6 +25,8 @@
 <script src="<?php echo base_url();?>assets/template/dist/js/demo.js"></script>
 <!--jquery-ui-->
 <script src="<?php echo base_url();?>assets/template/jquery-ui/jquery-ui.js"></script>
+<!--jquery-print-->
+<script src="<?php echo base_url();?>assets/template/jquery-print/jquery.print.js"></script>
 <script>
 $(document).ready(function () {
     var base_url = "<?php echo base_url();?>";
@@ -166,6 +168,27 @@ $(document).ready(function () {
         $(this).closest('tr').find('td:eq(5)').children('p').text(importe.toFixed(2));
         $(this).closest('tr').find('td:eq(5)').children('input').val(importe.toFixed(2));
         sumar();
+    });
+
+    $(document).on("click",".btn-view-venta",function(){
+        id_venta = $(this).val();
+        $.ajax({
+            url: base_url+'movimientos/ventas/view',
+            type: 'POST',
+            dataType: 'html',
+            data:{id:id_venta},
+            success:function(data){
+                $("#modal-default .modal-body").html(data);
+            }
+        });              
+    });
+
+    $(document).on("click",".btn-print",function(){
+        $("#modal-default .modal-body").print(
+            {
+                title:"Comprobante de venta"
+            }
+        );
     });
 })
 

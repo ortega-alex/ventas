@@ -16,9 +16,12 @@ class Ventas extends CI_Controller{
 	}
 
 	public function index(){
+		$data = array(
+			"ventas" => $this->Ventas_model->getVentas()
+		);
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');
-		$this->load->view('admin/ventas/list');
+		$this->load->view('admin/ventas/list',$data);
 		$this->load->view('layouts/footer');	
 	}
 
@@ -80,8 +83,6 @@ class Ventas extends CI_Controller{
 		} else {
 			redirect(base_url()."movimientos/ventas/add");
 		}	
-		
-
 	}
 
 	protected function updateComprobante($idComprobante){
@@ -112,6 +113,15 @@ class Ventas extends CI_Controller{
 			"stock" => $productoActual->stock - $cantidad
 		);
 		$producto = $this->Productos_model->update($id,$data);
+	}
+
+	public function view(){
+		$valor = $this->input->post("id");
+		$data = array(
+			"venta" => $this->Ventas_model->getVenta($valor),
+			"detalles" => $this->Ventas_model->getDetalleVenta($valor),
+		);
+		$this->load->view('admin/ventas/view',$data);
 	}
 
 }

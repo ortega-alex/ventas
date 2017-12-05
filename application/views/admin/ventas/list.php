@@ -24,17 +24,30 @@
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Nombre</th>
-                                                <th>Tipo Cliente</th>
-                                                <th>Tipo Documento</th>
-                                                <th>Telefono</th>
-                                                <th>Direccion</th>
-                                                <th>Numero de Documento</th>
+                                                <th>Nombre del cliente</th>
+                                                <th>Tipo de comprobante</th>
+                                                <th>Nuemero del comprobante</th>
+                                                <th>Fecha</th>
+                                                <th>Total</th>
                                                 <th>Opciones</th>
                                             </tr>
                                         </thead> 
                                         <tbody>
-                                            
+                                            <?php if(!empty($ventas)):?>
+                                                <?php foreach($ventas as $venta):?>
+                                                    <tr>
+                                                        <td><?php echo $venta->venta;?></td>
+                                                        <td><?php echo $venta->cliente;?></td>
+                                                        <td><?php echo $venta->tipoComprobante;?></td>
+                                                        <td><?php echo $venta->num_documento;?></td>
+                                                        <td><?php echo $venta->fecha;?></td>
+                                                        <td><?php echo $venta->total;?></td>
+                                                        <td>
+                                                            <button type="button" class="btn btn-primary btn-view-venta" value="<?php echo $venta->venta;?>" data-toggle="modal" data-target="#modal-default"><span class="fa fa-search"></span></button>
+                                                        </td>
+                                                    </tr>
+                                                <?php endforeach;?>
+                                            <?php endif;?>
                                         </tbody>                                   
                                     </table>
                                 </div>
@@ -56,13 +69,14 @@
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                   <span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Informacion del Cliente</h4>
+                <h4 class="modal-title">Informacion de la venta</h4>
               </div>
               <div class="modal-body">
 
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-danger pull-left" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary btn-print"><span class="fa fa-print"> Imprimir</span></button>
               </div>
             </div>
             <!-- /.modal-content -->

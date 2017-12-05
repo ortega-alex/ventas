@@ -4,6 +4,36 @@
 * 
 */
 class Ventas_model extends CI_Model{
+
+	public function getVentas(){
+		return $this->db->select("a.*,b.nombre as cliente,c.nombre as tipoComprobante")
+						->from("venta a")
+						->join("cliente b","a.cliente = b.cliente")
+						->join("tipo_comprobante c","a.tipo_comprobante = c.tipo_comprobante")
+						->get()
+						->result();
+
+	}
+
+	public function getVenta($id){
+		return $this->db->select("a.*,b.nombre as cliente,b.direccion,b.telefono,b.num_documento as documento,c.nombre as tipoComprobante")
+						->from("venta a")
+						->join("cliente b","a.cliente = b.cliente")
+						->join("tipo_comprobante c","a.tipo_comprobante = c.tipo_comprobante")
+						->where("a.venta",$id)
+						->get()
+						->row();
+	}
+
+	public function getDetalleVenta($id){
+		return $this->db->select("a.*,b.codigo,b.nombre")
+						->from("detalle_venta a")
+						->join("productos b","a.producto = b.producto")
+						->where("a.venta",$id)
+						->get()
+						->result();
+	}
+
 	public function getComprobantes(){
 		return $this->db->get('tipo_comprobante')
 						->result();

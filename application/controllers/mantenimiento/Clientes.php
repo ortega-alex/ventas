@@ -9,6 +9,9 @@ class Clientes extends CI_Controller{
 	{
 		# code...
 		parent::__construct();
+		if (!$this->session->userdata('login')) {
+			redirect(base_url());
+		} 
 		$this->load->model('Clientes_model');
 	}
 

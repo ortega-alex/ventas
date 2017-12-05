@@ -7,6 +7,9 @@ class Productos extends CI_Controller{
 	
 	function __construct(){
 		parent::__construct();
+		if (!$this->session->userdata('login')) {
+			redirect(base_url());
+		} 
 		$this->load->model('Productos_model');
 		$this->load->model('Categoria_model');
 	}

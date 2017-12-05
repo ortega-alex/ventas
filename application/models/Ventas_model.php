@@ -5,6 +5,17 @@
 */
 class Ventas_model extends CI_Model{
 
+	public function getVentasbyDate($fechainicio,$fechafin){
+		return $this->db->select("a.*,b.nombre as cliente,c.nombre as tipoComprobante")
+						->from("venta a")
+						->join("cliente b","a.cliente = b.cliente")
+						->join("tipo_comprobante c","a.tipo_comprobante = c.tipo_comprobante")
+						->where("a.fecha >= ",$fechainicio)
+						->where("a.fecha <= ",$fechafin)
+						->get()
+						->result();
+	}
+
 	public function getVentas(){
 		return $this->db->select("a.*,b.nombre as cliente,c.nombre as tipoComprobante")
 						->from("venta a")

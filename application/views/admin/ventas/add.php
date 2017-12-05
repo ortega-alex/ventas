@@ -109,6 +109,7 @@
                             <div class="form-group">
                                 <div class="col-md-12">
                                     <button type="submit" class="btn btn-success btn-flat">Guardar</button>
+                                     <a class="btn btn-danger btn-flat" href="<?php echo base_url();?>movimientos/ventas">Cancelar</a>
                                 </div>                                
                             </div>
 						</form>

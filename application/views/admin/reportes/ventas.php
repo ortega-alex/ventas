@@ -4,7 +4,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
     <h1>
-    Ventas
+    Reportes
     <small>Listado</small>
     </h1>
 </section>
@@ -14,13 +14,26 @@
     <div class="box box-solid">
         <div class="box-body">
             <div class="row">
-                <div class="col-md-12">
-                    <a href="<?php echo base_url();?>movimientos/ventas/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Venta</a>
-                </div>
-                <hr>
+                <form action="<?php echo current_url();?>" method="POST" class="form-horizontal">
+                    <div class="form-group">
+                        <label for="" class="col-md-1 control-label">Desde:</label>
+                        <div class="col-md-3">
+                            <input type="date" class="form-control" name="fechainicio" value="<?php echo !empty($fechainicio) ? $fechainicio :''?>">
+                        </div>
+                        <label for="" class="col-md-1 control-label">Hasta:</label>
+                        <div class="col-md-3">
+                            <input type="date" class="form-control" name="fechafin" value="<?php echo !empty($fechafin) ? $fechafin :''?>">
+                        </div>
+                        <div class="col-md-4">
+                            <input type="submit" name="buscar" value="Buscar" class="btn btn-primary">
+                            <a href="<?php echo base_url();?>reportes/ventas" class="btn btn-danger">Restableser</a>
+                        </div>
+                    </div>
+                </form>
+            </div><hr>
                 <div class="row">
                     <div class="col-md-12">                                    
-                        <table id='example1' class="table table-bordered btn-hover">
+                        <table id='example' class="table table-bordered btn-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>

@@ -27,6 +27,15 @@
 <script src="<?php echo base_url();?>assets/template/jquery-ui/jquery-ui.js"></script>
 <!--jquery-print-->
 <script src="<?php echo base_url();?>assets/template/jquery-print/jquery.print.js"></script>
+<!--datatable-export-->
+<script src="<?php echo base_url();?>assets/template/dataTables-export/js/buttons.print.min.js"></script>
+<script src="<?php echo base_url();?>assets/template/dataTables-export/js/buttons.flash.min.js"></script>
+<script src="<?php echo base_url();?>assets/template/dataTables-export/js/pdfmake.min.js"></script>
+<script src="<?php echo base_url();?>assets/template/dataTables-export/js/buttons.html5.min.js"></script>
+<script src="<?php echo base_url();?>assets/template/dataTables-export/js/jszip.min.js"></script>
+<script src="<?php echo base_url();?>assets/template/dataTables-export/js/dataTables.buttons.min.js"></script>
+<script src="<?php echo base_url();?>assets/template/dataTables-export/js/vfs_fonts.js"></script>
+<!--datatable-export-->
 <script>
 $(document).ready(function () {
     var base_url = "<?php echo base_url();?>";
@@ -80,6 +89,27 @@ $(document).ready(function () {
             }
         });
     });
+
+    $('#example').DataTable({
+        dom:'Bfrtip',
+        buttons:[
+            {
+                extend:"excelHtml5",
+                title:"Listado de ventas",
+                exportOptions:{
+                    culumns:[0,1,2,3,4,5]
+                }
+            },
+            {
+                extend:"pdfHtml5",
+                title:"Listado de ventas",
+                exportOptions:{
+                    culumns:[0,1,2,3,4,5]
+                }
+            },
+        ]
+    });
+
 	$('#example1').DataTable();
     $('.sidebar-menu').tree();
     $("#comprobante").on("change",function(){

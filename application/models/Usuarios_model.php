@@ -16,5 +16,23 @@ class Usuarios_model extends CI_Model{
 			return false;
 		}
 	}
+
+	public function getUsuarios(){
+		return $this->db->select('a.*,b.nombre as roll')
+					->from('usuario a')
+					->join('roles b','a.rol = b.rol')
+					->where('a.status',1)
+					->get()
+					->result();
+	}
+
+	public function getRoles(){
+		return $this->db->get('roles')
+						->result();
+	}
+
+	public function save($data){
+		return $this->db->insert("usuario",$data);
+	}
 }
  ?>

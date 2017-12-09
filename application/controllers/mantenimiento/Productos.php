@@ -119,9 +119,10 @@ class Productos extends CI_Controller{
 		}
 	}
 
-	public function view($id){
+	public function view(){
+		$id = $this->input->post("id");
 		$data = array(
-			'productos' => $this->Productos_model->getCategoria($id),
+			'producto' => $this->Productos_model->getProducto($id)
 		);
 		$this->load->view("admin/productos/view",$data);
 	}

@@ -19,8 +19,11 @@ class Productos_model extends CI_Model{
 	}
 
 	public function getProducto($id){
-		return $this->db->where('producto',$id)
-					->get('productos')
+		return $this->db->select('a.*,b.nombre as categoria')
+					->from('productos a')
+					->join('categoria b','a.categoria = b.categoria')
+					->where('producto',$id)
+					->get()
 					->row();
 	}
 

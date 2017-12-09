@@ -43,7 +43,7 @@
                                                 <td><?php echo $usuario->roll;?></td>
                                                 <td>
                                                     <div class="btn-group">
-                                                        <button type="button" class="btn btn-info btn-view" data-toggle='modal' data-target='#modal-default' value="<?php echo $usuario->usuario;?>">
+                                                        <button type="button" class="btn btn-info btn-view-usurios" data-toggle='modal' data-target='#modal-default' value="<?php echo $usuario->usuario;?>">
                                                                 <span class="fa fa-eye"></span>
                                                         </button>
                                                             <a href="<?php echo base_url();?>administrador/usuarios/edit/<?php echo $usuario->usuario?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
@@ -74,7 +74,7 @@
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">Informacion de la Categorias</h4>
+        <h4 class="modal-title">Informacion de la Usuario</h4>
       </div>
       <div class="modal-body">
 

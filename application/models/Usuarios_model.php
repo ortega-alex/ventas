@@ -34,5 +34,22 @@ class Usuarios_model extends CI_Model{
 	public function save($data){
 		return $this->db->insert("usuario",$data);
 	}
+
+	public function getUsuario($id){
+		return $this->db->select('a.*,b.nombre as roll')
+					->from('usuario a')
+					->join('roles b','a.rol = b.rol')
+					->where('a.usuario',$id)
+					->get()
+					->row();
+	}
+
+	public function update($id,$data){
+		$this->db->where('usuario',$id)
+					->update('usuario',$data);
+		return true;
+	}
+
+
 }
  ?>

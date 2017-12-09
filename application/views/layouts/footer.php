@@ -39,30 +39,45 @@
 <script>
 $(document).ready(function () {
     var base_url = "<?php echo base_url();?>";
-      $(".btn-view-producto").on("click",function(){
-        var producto = $(this).val();
-        //alert(cliente);
-        var infoproducto = producto.split("*");
-        html = "<p><strong>Codigo:</strong>"+infoproducto[1]+"</p>";
-        html += "<p><strong>Nombre:</strong>"+infoproducto[2]+"</p>";
-        html += "<p><strong>Descripcion:</strong>"+infoproducto[3]+"</p>";
-        html += "<p><strong>Precio:</strong>"+infoproducto[4]+"</p>";
-        html += "<p><strong>Stock:</strong>"+infoproducto[5]+"</p>";
-        html += "<p><strong>Categoria:</strong>"+infoproducto[6]+"</p>";
-         $("#modal-default .modal-body").html(html);
+    
+    $(".btn-view-usurios").on("click",function(){
+        id = $(this).val();
+        $.ajax({
+            url: base_url+'administrador/usuarios/view',
+            type: 'POST',
+            dataType: 'html',
+            data:{id:id},
+            success:function(data){
+                $("#modal-default .modal-body").html(data);
+            }
+        });        
+    });
+
+    $(".btn-view-producto").on("click",function(){
+        id = $(this).val();
+        $.ajax({
+            url: base_url+'mantenimiento/productos/view',
+            type: 'POST',
+            dataType: 'html',
+            data:{id:id},
+            success:function(data){
+                 $("#modal-default .modal-body").html(data);
+            }
+        });
     });
 
     $(".btn-view-cliente").on("click",function(){
-        var cliente = $(this).val();
-        //alert(cliente);
-        var infocliente = cliente.split("*");        
-        html = "<p><strong>Nombre:</strong>"+infocliente[1]+"</p>";
-        html += "<p><strong>Tipo Cliente:</strong>"+infocliente[2]+"</p>";
-        html += "<p><strong>Tipo Documento:</strong>"+infocliente[3]+"</p>";
-        html += "<p><strong>Direccion:</strong>"+infocliente[4]+"</p>";
-        html += "<p><strong>Telefono:</strong>"+infocliente[5]+"</p>";
-        html += "<p><strong>Numero de Documento:</strong>"+infocliente[6]+"</p>";
-         $("#modal-default .modal-body").html(html);
+        id = $(this).val();
+        $.ajax({
+            url: base_url+'mantenimiento/clientes/view',
+            type: 'POST',
+            dataType: 'html',
+            data:{id:id},
+            success:function(data){
+                 $("#modal-default .modal-body").html(data);
+            }
+        });
+        
     });
     $(".btn-remove").on("click",function(e){
         e.preventDefault();
@@ -80,6 +95,7 @@ $(document).ready(function () {
 
     $(".btn-view").on("click",function(){     
         var id = $(this).val();
+        console.log("entra");
         $.ajax({
             url: base_url + 'mantenimiento/categorias/view/' + id,
             type:'POST',

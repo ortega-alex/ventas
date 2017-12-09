@@ -134,14 +134,16 @@ class Clientes extends CI_Controller{
 		}		
 	}
 
-	public function view($id){
+	public function view(){
+		$id = $this->input->post("id");
 		$data = array(
-			'clientes' => $this->Clientes_model->getCliente($id),
+			'cliente' => $this->Clientes_model->getCliente($id)
 		);
-		$this->load->view("admin/categorias/view",$data);
+		$this->load->view("admin/clientes/view",$data);
 	}
 
-	public function delete($id){		
+	public function delete(){
+		$id = $this->input->post("id");		
 		$data = array(
 			'status' => "0",
 			'fecha_baja' => date("Y-m-d H:i:s"),

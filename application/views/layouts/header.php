@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/dist/css/skins/_all-skins.min.css">
     <!--datatable-export-->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/template/dataTables-export/css/buttons.dataTables.min.css">
+    <!--ionicons-->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/template/ionicons/css/ionicons.min.css">
 </head>
 <body class="hold-transition skin-blue sidebar-mini"><header class="main-header">
 <!-- Logo -->

@@ -36,10 +36,19 @@
 <script src="<?php echo base_url();?>assets/template/dataTables-export/js/dataTables.buttons.min.js"></script>
 <script src="<?php echo base_url();?>assets/template/dataTables-export/js/vfs_fonts.js"></script>
 <!--datatable-export-->
+<!--highcharts-->
+<script src="<?php echo base_url();?>assets/template/highcharts/highcharts.js"></script>
+<script src="<?php echo base_url();?>assets/template/highcharts/exporting.js"></script>
+<!--highcharts-->
 <script>
 $(document).ready(function () {
     var base_url = "<?php echo base_url();?>";
-    
+    var year = (new Date).getFullYear();
+    dataGrafico(base_url,year);   
+    $("#year").on("change",function(){
+        yearselect = $(this).val();
+        dataGrafico(base_url,yearselect);     
+    });
     $(".btn-view-usurios").on("click",function(){
         id = $(this).val();
         $.ajax({
@@ -270,6 +279,83 @@ function sumar(){
     $("input[name=total]").val(total.toFixed(2));
 }
 
+function graficar(meses,montos,year){
+    Highcharts.chart('grafico',{
+        chart:{
+            type:'column'
+        },
+        title:{
+            text:'Ventas acumuladas por meses'
+        },
+        subtitle:{
+            text:'año:'+year
+        },
+        xAxis:{
+            categories:meses,
+            crosshair:true
+        },
+        yAxis:{
+            min:0,
+            title:{
+                text:'Monto acumulado (mm)'
+            }
+        },
+        tooltip:{
+            headerFormat:'<span style="font-size:10px">{point.key}</span><br><table>',
+            pointFormat:'<tr><td style="color:{series.color};padding:0"> Monto:</td>'
+                        +'<td style="padding:0"><b>{point.y:.2f} moneda</b></td</tr>',
+            footerFormat:'</table>',
+            shared:true,
+            useHtml:true
+        },
+        plotOptions:{
+            colums:{
+                poinPaddiong:0.2,
+                bordertWidth:0
+            }
+        },
+        series:[{
+            name:'Meses',
+            data:montos
+        }]
+        
+    });
+}
+
+function dataGrafico(base_url,year){
+    nameMonth = [
+                'Jan',
+                'Feb',
+                'Mar',
+                'Apr',
+                'May',
+                'Jun',
+                'Jul',
+                'Aug',
+                'Sep',
+                'Oct',
+                'Nov',
+                'Dec'
+    ];
+    $.ajax({
+        url: base_url+'dashboard/getData',
+        type: 'POST',
+        dataType: 'json',
+        data: {year: year},
+        success:function(data){
+            var meses = new Array();
+            var montos = new Array();
+            $.each(data,function(key,valor) {
+                meses.push(nameMonth[valor.mes -1]);
+                valor = Number(valor.monto);
+                montos.push(valor);
+            });
+            graficar(meses,montos,year);
+        }
+    });
+    
+
+}
 </script>
 </body>
 </html>

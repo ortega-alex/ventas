@@ -27,6 +27,7 @@ class Backend_lib {
 			return $permisos;
 		}
 	}
+
 }
 
  ?>

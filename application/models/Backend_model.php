@@ -17,6 +17,14 @@ class Backend_model extends CI_Model{
 						->get('permisos')
 						->row();
 	}
+
+	public function rowCont($tabla){
+		if($tabla != 'venta'){
+			$this->db->where('status',1);
+		}
+		return $this->db->get($tabla)
+						->num_rows();
+	}
 }
 
 ?>

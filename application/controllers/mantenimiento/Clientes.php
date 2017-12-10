@@ -4,20 +4,22 @@
 * 
 */
 class Clientes extends CI_Controller{
-	
+
+	private $permisos;
 	function __construct()
 	{
-		# code...
 		parent::__construct();
 		if (!$this->session->userdata('login')) {
 			redirect(base_url());
 		} 
+		$this->permisos = $this->backend_lib->control();
 		$this->load->model('Clientes_model');
 	}
 
 	public function index(){
 		$data = array(
 			'clientes' => $this->Clientes_model->getClientes(),
+		 	'permisos' => $this->permisos
 		 );
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');
@@ -27,9 +29,9 @@ class Clientes extends CI_Controller{
 
 	public function add(){
 		$data = array(
-						"tipoClientes" => $this->Clientes_model->getTipoCliente(),
-						"tipoDocumentos" => $this->Clientes_model->getTipoDocumento() 
-					);
+			"tipoClientes" => $this->Clientes_model->getTipoCliente(),
+			"tipoDocumentos" => $this->Clientes_model->getTipoDocumento() 
+		);
 
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');

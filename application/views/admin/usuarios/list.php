@@ -15,7 +15,9 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
+                        <?php if($permisos->insert == 1):?>
                         <a href="<?php echo base_url();?>administrador/usuarios/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar usuario</a>
+                        <?php endif;?>
                     </div>
                     <hr>
                     <div class="row">
@@ -46,8 +48,12 @@
                                                         <button type="button" class="btn btn-info btn-view-usurios" data-toggle='modal' data-target='#modal-default' value="<?php echo $usuario->usuario;?>">
                                                                 <span class="fa fa-eye"></span>
                                                         </button>
+                                                        <?php if($permisos->update == 1):?>
                                                             <a href="<?php echo base_url();?>administrador/usuarios/edit/<?php echo $usuario->usuario?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                        <?php endif;?>
+                                                        <?php if($permisos->delete == 1):?>
                                                             <a href="<?php echo base_url();?>administrador/usuarios/delete/<?php echo $usuario->usuario?>" class="btn btn-danger btn-remove"><span class="fa fa-trash"></span></a>
+                                                        <?php endif;?>
                                                     </div>
                                                 </td>
                                             </tr>

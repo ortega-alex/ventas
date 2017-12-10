@@ -4,17 +4,20 @@
 */
 class Usuarios extends CI_Controller{
 	
+	private $permisos;
 	function __construct()	{
 		parent::__construct();
 		if (!$this->session->userdata('login')) {
 			redirect(base_url());
 		} 
+		$this->permisos = $this->backend_lib->control();
 		$this->load->model('Usuarios_model');
 	}
 
 	public function index(){
 		$data = array(
-			'usuarios' => $this->Usuarios_model->getUsuarios()
+			'usuarios' => $this->Usuarios_model->getUsuarios(),
+			'permisos' => $this->permisos
 		);
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');

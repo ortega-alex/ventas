@@ -15,7 +15,9 @@
             <div class="box-body">
                 <div class="row">
                     <div class="col-md-12">
+                        <?php if($permisos->insert == 1):?>
                         <a href="<?php echo base_url();?>mantenimiento/categorias/add" class="btn btn-primary btn-flat"><span class="fa fa-plus"></span>Agregar Categoria</a>
+                        <?php endif;?>
                     </div>
                     <hr>
                     <div class="row">
@@ -41,8 +43,12 @@
                                                         <button type="button" class="btn btn-info btn-view" data-toggle='modal' data-target='#modal-default' value="<?php echo $categorias->categoria;?>">
                                                                 <span class="fa fa-eye"></span>
                                                         </button>
+                                                            <?php if($permisos->update == 1):?>
                                                             <a href="<?php echo base_url();?>mantenimiento/categorias/edit/<?php echo $categorias->categoria?>" class="btn btn-warning"><span class="fa fa-pencil"></span></a>
+                                                            <?php endif;?>
+                                                            <?php if($permisos->delete == 1):?>
                                                             <a href="<?php echo base_url();?>mantenimiento/categorias/delete/<?php echo $categorias->categoria?>" class="btn btn-danger btn-remove"><span class="fa fa-trash"></span></a>
+                                                            <?php endif;?>
                                                     </div>
                                                 </td>
                                             </tr>

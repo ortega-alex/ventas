@@ -4,12 +4,14 @@
 * 
 */
 class Ventas extends CI_Controller{
-	
+
+	private $permisos;
 	function __construct(){
 		parent::__construct();
 		if (!$this->session->userdata('login')) {
 			redirect(base_url());
 		} 
+		$this->permisos = $this->backend_lib->control();
 		$this->load->model('Ventas_model');
 		$this->load->model('Clientes_model');
 		$this->load->model('Productos_model');
@@ -17,7 +19,8 @@ class Ventas extends CI_Controller{
 
 	public function index(){
 		$data = array(
-			"ventas" => $this->Ventas_model->getVentas()
+			"ventas" => $this->Ventas_model->getVentas(),
+			'permisos' => $this->permisos
 		);
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');

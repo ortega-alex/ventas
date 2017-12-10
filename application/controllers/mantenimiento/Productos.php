@@ -4,12 +4,14 @@
 * 
 */
 class Productos extends CI_Controller{
-	
+
+	private $permisos;
 	function __construct(){
 		parent::__construct();
 		if (!$this->session->userdata('login')) {
 			redirect(base_url());
 		} 
+		$this->permisos = $this->backend_lib->control();
 		$this->load->model('Productos_model');
 		$this->load->model('Categoria_model');
 	}
@@ -17,6 +19,7 @@ class Productos extends CI_Controller{
 	public function index(){
 		$data = array(
 			'productos' => $this->Productos_model->getProductos(),
+			'permisos' => $this->permisos
 		);
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');

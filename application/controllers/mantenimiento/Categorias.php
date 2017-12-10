@@ -3,18 +3,21 @@
 /**
 * 
 */
-class Categorias extends CI_Controller
-{
+class Categorias extends CI_Controller{
+
+	private $permisos;
 	public function __construct(){
 		parent::__construct();
 		if (!$this->session->userdata('login')) {
 			redirect(base_url());
 		} 
+		$this->permisos = $this->backend_lib->control();
 		$this->load->model("Categoria_model");
 	}
 	public function index(){
 		$data = array(
 			'categoria' => $this->Categoria_model->getCategorias(),
+			'permisos' => $this->permisos
 		 );
 		$this->load->view('layouts/header');
 		$this->load->view('layouts/aside');

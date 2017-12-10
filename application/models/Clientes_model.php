@@ -56,5 +56,16 @@ class Clientes_model extends CI_Model
 		return $this->db->get("tipo_documento")
 						->result();
 	}
+
+	public function getClientesbyDate($documento){
+		return $this->db->select('a.*,b.nombre as tipoCliente,c.nombre as tipoDocumento')
+						->from("cliente a")
+						->join("tipo_cliente b","a.tipo_cliente = b.tipo_cliente")
+						->join("tipo_documento c","a.tipo_documento = c.tipo_documento")
+						->where("a.status","1")
+						->where('a.num_documento',$documento)
+						->get()
+						->result();	
+	}
 }
  ?>

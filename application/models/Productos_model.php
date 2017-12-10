@@ -32,5 +32,15 @@ class Productos_model extends CI_Model{
 					->update('productos',$data);
 		return true;
 	}
+
+	public function getProductosbyDate($codigo){
+		return $this->db->select('a.*,b.nombre as categoria , b.fecha_alta as fecha')
+					->from('productos a')
+					->join('categoria b','a.categoria = b.categoria')
+					->where('status','1')
+					->where('codigo',$codigo)
+					->get()
+					->result();
+	}
 }
  ?>

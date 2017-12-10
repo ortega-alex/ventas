@@ -120,14 +120,14 @@ $(document).ready(function () {
         buttons:[
             {
                 extend:"excelHtml5",
-                title:"Listado de ventas",
+                title:"Listado",
                 exportOptions:{
                     culumns:[0,1,2,3,4,5]
                 }
             },
             {
                 extend:"pdfHtml5",
-                title:"Listado de ventas",
+                title:"Listado",
                 exportOptions:{
                     culumns:[0,1,2,3,4,5]
                 }
@@ -241,7 +241,7 @@ $(document).ready(function () {
     $(document).on("click",".btn-print",function(){
         $("#modal-default .modal-body").print(
             {
-                title:"Comprobante de venta"
+                title:"Comprobante"
             }
         );
     });

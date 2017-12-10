@@ -27,5 +27,14 @@ class Categoria_model extends CI_Model
 					->update('categoria',$data);
 		return true;
 	}
+
+	public function getCategoriasbyDate($fechainicio,$fechafin){
+		
+		return $this->db->where("fecha_alta >= ",$fechainicio)
+						->where("fecha_alta <= ",$fechafin)
+						->where('estado','1')
+						->get('categoria')
+						->result();
+	}
 }
  ?>

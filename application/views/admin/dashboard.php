@@ -24,7 +24,7 @@
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
                             </div>
-                            <a href="<?php echo base_url();?>mantenimiento/clientes" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="<?php echo base_url();?>reportes/clientes" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-xs-6 col-lg-3">
@@ -37,7 +37,7 @@
                             <div class="icon">
                                 <i class="ion-stats-bars"></i>
                             </div>
-                            <a href="<?php echo base_url();?>mantenimiento/productos" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="<?php echo base_url();?>reportes/productos" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-xs-6 col-lg-3">
@@ -50,7 +50,7 @@
                             <div class="icon">
                                 <i class="ion ion-person-add"></i>
                             </div>
-                            <a href="<?php echo base_url();?>mantenimiento/productos" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="<?php echo base_url();?>administrador/usuarios" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                     <div class="col-xs-6 col-lg-3">
@@ -63,7 +63,7 @@
                             <div class="icon">
                                 <i class="ion ion-pie-graph"></i>
                             </div>
-                            <a href="<?php echo base_url();?>movimientos/ventas" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                            <a href="<?php echo base_url();?>ventas/ventas" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
